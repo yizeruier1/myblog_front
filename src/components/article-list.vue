@@ -19,9 +19,9 @@
                     </el-col>
 
                     <el-col :span="12" style="text-align:right;">
-                        <el-tag effect="dark" size="small">HTML</el-tag>&nbsp;&nbsp;
-                        <el-tag effect="dark" type="success" size="small">JS</el-tag>&nbsp;&nbsp;
-                        <el-tag effect="dark" type="warning" size="small">CSS</el-tag>
+                        <el-tag effect="dark" size="mini">html</el-tag>&nbsp;&nbsp;
+                        <el-tag effect="dark" type="success" size="mini">js</el-tag>&nbsp;&nbsp;
+                        <el-tag effect="dark" type="warning" size="mini">css</el-tag>
                     </el-col>
                 </el-row>
             </div>
@@ -77,8 +77,8 @@
                 line-height 24px
             .articla-tags
                 width 100%
-                height 24px
-                line-height 24px
+                height 22px
+                line-height 22px
                 color #b4b4b4
                 font-size 12px
                 span
@@ -92,6 +92,7 @@
             float right
             cursor pointer
             overflow hidden
+            border-radius 6px
             img
                 display block
                 width 100%

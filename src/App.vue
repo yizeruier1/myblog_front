@@ -44,4 +44,17 @@
             width 940px
             min-height calc(100vh - 157px)
             margin 57px auto 0 auto
+    
+    .common-desc
+        width 100%
+        height 50px
+        line-height 50px
+        margin 20px 0
+        color #333
+        font-size 20px
+        text-align center
+        font-weight 600
+    .w-e-text-container
+    .w-e-menu
+        z-index 0 !important
 </style>
