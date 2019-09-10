@@ -1,34 +1,35 @@
 <template>
-    <div>
-        <div ref="editor" style="text-align:left;margin-top:20px;"></div>
-    </div>
+    <div ref="editor" style="text-align:left;"></div>
 </template>
 
 <script>
     import E from 'wangeditor'
     export default {
         name: 'editor',
-        // model: {
-        //     prop: 'content',
-        //     event: 'input'
-        // },
-        // props: ['content'],
+        model: {
+            prop: 'content',
+            event: 'watch'
+        },
+        props: ['content'],
         data () {
             return {
                 editorContent: ''
             }
         },
-        methods: {
-            getContent() {
-                console.log(this.editorContent)
+        watch: {
+            editorContent(newVal){
+                this.$emit('watch', this.editorContent)
             }
         },
         mounted() {
             var editor = new E(this.$refs.editor)
+            editor.customConfig.uploadImgShowBase64 = true
             editor.customConfig.onchange = (html) => {
                 this.editorContent = html
             }
             editor.create()
+
+            this.editorContent = this.content
         }
     }
 </script>

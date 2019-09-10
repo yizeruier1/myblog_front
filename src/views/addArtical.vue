@@ -46,6 +46,24 @@
                     </el-form-item>
                 </el-col>
             </el-row>
+
+            <el-row>
+                <el-col :span="24">
+                    <el-form-item label="缩略图:" prop="coverImg">
+                        <el-upload
+                            action="https://jsonplaceholder.typicode.com/posts/"
+                            list-type="picture-card"
+                            :on-preview="handlePictureCardPreview"
+                            :before-upload="beforeAvatarUpload"
+                            :multiple="false">
+                            <i class="el-icon-plus"></i>
+                        </el-upload>
+                        <el-dialog :visible.sync="dialogVisible">
+                            <img width="100%" :src="ruleForm.coverImg" alt="">
+                        </el-dialog>
+                    </el-form-item>
+                </el-col>
+            </el-row>
             
             <editor v-model="ruleForm.content" />
 
@@ -73,7 +91,8 @@
                     types: [],
                     content: '',
                     desc: '',
-                    comment: 1
+                    comment: 1,
+                    coverImg: ''
                 },
                 rules: {
                     title: [
@@ -86,12 +105,13 @@
                         { required: true, message: '请输入文章简介', trigger: 'blur' }
                     ]
                 },
-                loading: false
+                loading: false,
+                // 图片预览
+                dialogVisible: false
             }
         },
         methods: {
             submitForm(){
-                console.log(this.ruleForm)
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
                         alert('submit!');
@@ -103,6 +123,24 @@
             },
             resetForm(){
                 this.$refs.ruleForm.resetFields()
+            },
+            // 图片上传成功
+            handlePictureCardPreview(file) {
+                this.ruleForm.coverImg = file.url
+                this.dialogVisible = true
+            },
+            // 限制 图片上传 格式 大小
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg';
+                const isLt2M = file.size / 1024 / 1024 < 2;
+
+                if (!isJPG) {
+                this.$message.error('上传头像图片只能是 JPG 格式!');
+                }
+                if (!isLt2M) {
+                this.$message.error('上传头像图片大小不能超过 2MB!');
+                }
+                return isJPG && isLt2M;
             }
         }
     }

@@ -14,14 +14,18 @@
             <!-- // 浏览量  分类标签等 -->
             <div class="articla-tags">
                 <el-row>
-                    <el-col :span="12">
+                    <el-col :span="6">
                         <span class="el-icon-s-promotion"></span>  123
                     </el-col>
 
+                    <el-col :span="6">
+                        Stephen
+                    </el-col>
+
                     <el-col :span="12" style="text-align:right;">
-                        <el-tag effect="dark" size="mini">html</el-tag>&nbsp;&nbsp;
-                        <el-tag effect="dark" type="success" size="mini">js</el-tag>&nbsp;&nbsp;
-                        <el-tag effect="dark" type="warning" size="mini">css</el-tag>
+                        <el-tag size="small">html</el-tag>&nbsp;&nbsp;
+                        <el-tag type="success" size="small">js</el-tag>&nbsp;&nbsp;
+                        <el-tag type="warning" size="small">css</el-tag>
                     </el-col>
                 </el-row>
             </div>
@@ -77,8 +81,8 @@
                 line-height 24px
             .articla-tags
                 width 100%
-                height 22px
-                line-height 22px
+                height 24px
+                line-height 24px
                 color #b4b4b4
                 font-size 12px
                 span
