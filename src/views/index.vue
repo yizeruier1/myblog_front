@@ -31,7 +31,6 @@
     heightAuto()
         height auto
         overflow hidden
-
     .index-warp
         width 100%
         padding 30px 0

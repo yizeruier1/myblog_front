@@ -18,6 +18,10 @@
                 </el-col>
             </el-row>
         </div>
+
+        <div class="header-menu">
+            <el-button type="text" :size="UISize" @click="$router.push('/login')">去登录</el-button>
+        </div>
     </header>
 </template>
 
@@ -38,12 +42,19 @@
     .header
         width 100%
         height $headerH
-        border-bottom 1px solid #f0f0f0
-        background-color #fff
+        border-bottom 1px solid hsla(0,0%,93%,.6)
+        background-color hsla(0,0%,100%,.9)
         position fixed
         left 0
         top 0
         z-index 1
+        .header-menu
+            width 100px
+            height $headerH
+            line-height $headerH
+            position absolute
+            right 0
+            top 0
         .header-main
             width 940px
             height $headerH

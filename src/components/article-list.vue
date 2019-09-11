@@ -2,7 +2,7 @@
     <div class="artical-list">
         <div class="artical-info">
             <!-- // 文章标题 -->
-            <div class="artical-title">
+            <div class="artical-title" @click="$router.push('/home/articalDetail')">
                 一个合格的中级前端工程师要掌握的JavaScript 技巧
             </div>
 
@@ -32,7 +32,7 @@
         </div>
 
         <div class="artical-img">
-            <img src="../assets/images/1.jpg" alt="" />
+            <img src="../assets/images/1.jpg" alt="" @click="$router.push('/home/articalDetail')" />
         </div>
     </div>
 </template>
@@ -49,7 +49,6 @@
 </script>
 
 <style lang="stylus" scoped>
-
 
     .artical-list
         width 100%
@@ -72,6 +71,7 @@
                 font-weight 700
                 margin-bottom 4px
                 cursor pointer
+                text-overflow(1)
             .artical-desc
                 width 100%
                 height 48px
@@ -79,6 +79,7 @@
                 color #999
                 font-size 13px
                 line-height 24px
+                text-overflow(2)
             .articla-tags
                 width 100%
                 height 24px

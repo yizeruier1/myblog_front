@@ -1,6 +1,7 @@
 import home from '@/views/layout.vue'
 import index from '@/views/index.vue'
 import page404 from '@/views/404.vue'
+import articalDetail from '@/views/articalDetail.vue'
 
 const routes = [
     {
@@ -18,6 +19,11 @@ const routes = [
                 path: '/home/addArtical',
                 name: 'addArtical',
                 component: () => import('@/views/addArtical.vue')
+            },
+            {
+                path: '/home/articalDetail',
+                name: 'articalDetail',
+                component: articalDetail
             }
         ]
     },
@@ -25,6 +31,11 @@ const routes = [
         path: '/login',
         name: 'login',
         component: () => import('@/views/login.vue')
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: () => import('@/views/register.vue')
     },
     {
         path: '/404',

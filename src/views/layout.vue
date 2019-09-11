@@ -35,7 +35,12 @@
         min-height 100vh
         overflow hidden
         .bolg-content
-            width 940px
+            width 988px
             min-height calc(100vh - 157px)
-            margin 57px auto 0 auto
+            margin 74px auto 10px auto
+            background-color #fff
+            padding 0 24px
+            box-sizing border-box
+            box-shadow 0 0 20px #eee
+            border-radius 2px
 </style>
