@@ -1,8 +1,16 @@
 <template>
     <div class="login-warp">
         <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm">
-            <div class="login-form-box" style="height:378px;">
-                <h2 class="login-title"> Stephen的博客 </h2>
+            <div class="login-form-box" style="height:412px;">
+                <h2 class="login-title regi-title"> Stephen的博客 </h2>
+
+                <el-row>
+                    <el-col :span="24">
+                        <el-form-item prop="username">
+                            <el-input type="username" v-model="ruleForm.username" placeholder="用户名" :size="UISize"></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
 
                 <el-row>
                     <el-col :span="24">
@@ -74,11 +82,15 @@
             }
             return{
                 ruleForm: {
+                    username: '',
                     email: '',
                     password: '',
                     password1: ''
                 },
                 rules: {
+                    username: [
+                        { required: true, message: '请输入用户名', trigger: 'blur' }
+                    ],
                     email: [
                         { validator: checkEmail, trigger: 'blur' }
                     ],
@@ -134,4 +146,8 @@
                 color #969696
                 text-align center
                 margin-bottom 20px
+            .regi-title
+                height 50px
+                line-height 50px
+                margin-bottom 10px
 </style>

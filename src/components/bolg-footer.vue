@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-        <p class="footer-email">email: gostephen@163.com</p>
+        <p class="footer-email">@copyright：京ICP备19041411号</p>
         <div class="footer-icons">
             <!-- // 微信公众号 -->
             <a href="https://github.com/yizeruier1" target="_blank" class="footer-icon-link">

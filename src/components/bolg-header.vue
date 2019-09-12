@@ -20,14 +20,19 @@
         </div>
 
         <div class="header-menu">
-            <el-button type="text" :size="UISize" @click="$router.push('/login')">去登录</el-button>
+            <!-- <el-button type="text" :size="UISize" @click="$router.push('/login')">去登录</el-button> -->
+            <header-menu />
         </div>
     </header>
 </template>
 
 <script>
+    import headerMenu from './header-menu.vue'
     export default {
         name: "bold-header",
+        components: {
+            headerMenu
+        },
         data(){
             return{
                 searchText: ''

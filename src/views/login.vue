@@ -6,8 +6,8 @@
 
                 <el-row>
                     <el-col :span="24">
-                        <el-form-item prop="username">
-                            <el-input v-model="ruleForm.username" placeholder="用户名" :size="UISize"></el-input>
+                        <el-form-item prop="email">
+                            <el-input v-model="ruleForm.email" placeholder="用户名" :size="UISize"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -42,16 +42,17 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         name: 'login',
         data(){
             return{
                 ruleForm: {
-                    username: '',
+                    email: '',
                     password: ''
                 },
                 rules: {
-                    username: [
+                    email: [
                         { required: true, message: '请输入用户名', trigger: 'blur' }
                     ],
                     password: [
@@ -66,9 +67,12 @@
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
                         this.loading = true
-                        setTimeout(() => {
-                            this.$router.push('/')
-                        }, 1000)
+                        // setTimeout(() => {
+                        //     this.$router.push('/')
+                        // }, 1000)
+                        axios.post('/apis/login', this.ruleForm).then(res => {
+                            console.log(res)
+                        })
                     } else {
                         console.log('error submit!!');
                         return false;
