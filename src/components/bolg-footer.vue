@@ -33,7 +33,6 @@
 </script>
 
 <style lang="stylus" scoped>
-    @import '../assets/font-icon/iconfont.css';
     common-lay()
         display inline-block
         width 30px

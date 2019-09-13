@@ -1,5 +1,4 @@
 <template>
-    <!-- <div class="messagebox" contenteditable="true"></div> -->
     <div style="margin-top:20px;">
         <el-input
             type="textarea"
@@ -32,17 +31,5 @@
 </script>
 
 <style lang="stylus" scoped>
-    .messagebox
-        display block
-        width 100%
-        min-height 150px
-        border 1px solid rgba(45,140,240,0.4)
-        border-radius 8px
-        margin-top 20px
-        box-sizing border-box
-        padding 12px
-        font-size 14px
-        color #666
-        line-height 24px
-        outline none
+    
 </style>

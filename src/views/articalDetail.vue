@@ -5,7 +5,8 @@
         </h2>
         <el-row class="artical-d-info">
             <el-col :span="24">
-                项目实战    2017年12月02日 星期六 晚上
+                <span class="iconfont icon-bi" style="font-size:12px;"></span>  Stephen
+                <span class="iconfont icon-riqi" style="margin-left:16px;"></span>  2017年12月02日 星期六 晚上
             </el-col>
         </el-row>
 
@@ -20,17 +21,22 @@
             <el-tag type="warning" size="small">css</el-tag>
         </div>
 
+        <!-- // 留言列表 -->
+        <comments-list />
+
         <!-- // 留言板 -->
-        <message-box />
+        <comments-box />
     </div>
 </template>
 
 <script>
-    import messageBox from '../components/messageBox'
+    import commentsBox from '../components/commentsBox'
+    import commentsList from '../components/commentsList'
     export default {
         name: 'articalDetail',
         components: {
-            messageBox
+            commentsBox,
+            commentsList
         },
         data(){
             return{

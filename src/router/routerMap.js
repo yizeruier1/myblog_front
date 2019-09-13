@@ -5,6 +5,7 @@ import articalDetail from '@/views/articalDetail.vue'
 
 const routes = [
     {
+        // 前台页面
         path: '/',
         name: 'home',
         redirect: '/home/index',
@@ -25,6 +26,20 @@ const routes = [
                 name: 'articalDetail',
                 component: articalDetail
             }
+        ]
+    },
+    {
+        // 后台页面
+        path: '/admin',
+        name: 'admin',
+        component: () => import('@/views/adminHome.vue'),
+        redirect: '/admin/welcome',
+        children: [
+            {
+                path: '/admin/welcome',
+                name: 'welcome',
+                component: () => import('@/views/adminWelcome.vue')
+            },
         ]
     },
     {

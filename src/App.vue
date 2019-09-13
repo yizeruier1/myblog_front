@@ -16,7 +16,7 @@
 </script>
 
 <style lang="stylus">
-    body,p,ul,li
+    body,p,ul,li,h1,h2,h3,h4,h5
         margin 0
         padding 0
     #app
@@ -27,6 +27,8 @@
         -webkit-font-smoothing antialiased
         -moz-osx-font-smoothing grayscale
         background-color #f4f4f4
+
+    // element editor  样式覆盖
     .w-e-text-container
     .w-e-menu
         z-index 0 !important
@@ -35,4 +37,6 @@
         color #666 !important
         border 1px solid rgba(45,140,240,0.4) !important
         line-height 24px !important
+    .el-menu
+        border-right 0 !important
 </style>

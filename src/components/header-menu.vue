@@ -5,9 +5,9 @@
                 下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item icon="el-icon-s-custom">个人资料</el-dropdown-item>
-                <el-dropdown-item icon="el-icon-document-copy">资源管理</el-dropdown-item>
-                <el-dropdown-item icon="el-icon-circle-close">退出</el-dropdown-item>
+                <el-dropdown-item icon="iconfont icon-yonghudianji">个人资料</el-dropdown-item>
+                <el-dropdown-item icon="el-icon-document-copy" @click.native="$router.push('/admin')">资源管理</el-dropdown-item>
+                <el-dropdown-item icon="iconfont icon-tuichu">退出</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
     </div>

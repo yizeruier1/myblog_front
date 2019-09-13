@@ -14,12 +14,12 @@
             <!-- // 浏览量  分类标签等 -->
             <div class="articla-tags">
                 <el-row>
-                    <el-col :span="6">
-                        <span class="el-icon-s-promotion"></span>  123
+                    <el-col :span="4">
+                        <span class="iconfont icon-liulanliang"></span>  123
                     </el-col>
 
-                    <el-col :span="6">
-                        Stephen
+                    <el-col :span="4">
+                        <span class="iconfont icon-bi" style="font-size:12px;"></span>  Stephen
                     </el-col>
 
                     <el-col :span="12" style="text-align:right;">
