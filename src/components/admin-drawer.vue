@@ -20,7 +20,7 @@
             </p>
 
             <div class="drawer-menu">
-                <el-button type="primary" plain :size="UISize" style="width:100%;">去前台</el-button>
+                <el-button type="primary" plain :size="UISize" style="width:100%;" @click="$router.push('/')">去前台</el-button>
                 <el-button type="success" plain :size="UISize" style="width:100%;margin-top:16px;margin-left:0;">去前台</el-button>
                 <el-button type="danger" plain :size="UISize" style="width:100%;margin-top:16px;margin-left:0;" @click="lgout">退出</el-button>
             </div>
