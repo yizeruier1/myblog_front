@@ -51,7 +51,7 @@
                 <el-col :span="24">
                     <el-form-item label="缩略图:" prop="coverImg">
                         <el-upload
-                            action="https://jsonplaceholder.typicode.com/posts/"
+                            action="https://127.0.0.1/apis/uploadImg"
                             list-type="picture-card"
                             :on-preview="handlePictureCardPreview"
                             :before-upload="beforeAvatarUpload"
@@ -148,7 +148,7 @@
 
 <style lang="stylus" scoped>
     .addartical-warp
-        width 724px
+        width 800px
         height auto
         margin 0 auto
         overflow hidden

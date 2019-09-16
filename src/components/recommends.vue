@@ -3,7 +3,7 @@
         <div class="recommend-list">
             <el-row>
                 <el-col :span="21" class="indent8">
-                    <span class="el-icon-platform-eleme" style="margin-right:10px;"></span>电影推荐  
+                    <span class="iconfont icon-dianying" style="margin:auto 10px auto 10px;"></span>电影推荐  
                 </el-col>
                 <el-col :span="3">
                     <span class="el-icon-right"></span>
@@ -43,12 +43,19 @@
                 </el-col>
             </el-row>
         </div>
+
+        <!-- // 网站公告 -->
+        <website-notice />
     </div>
 </template>
 
 <script>
+    import websiteNotice from './websiteNotice.vue'
     export default {
-        
+        name: 'recommends',
+        components: {
+            websiteNotice
+        }
     }
 </script>
 

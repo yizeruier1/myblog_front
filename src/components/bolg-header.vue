@@ -20,14 +20,15 @@
         </div>
 
         <div class="header-menu">
-            <!-- <el-button type="text" :size="UISize" @click="$router.push('/login')">去登录</el-button> -->
-            <header-menu />
+            <el-button type="text" :size="UISize" @click="$router.push('/login')" v-if="!logined">去登录</el-button>
+            <header-menu v-else />
         </div>
     </header>
 </template>
 
 <script>
     import headerMenu from './header-menu.vue'
+    import { mapState } from 'vuex'
     export default {
         name: "bold-header",
         components: {
@@ -37,6 +38,11 @@
             return{
                 searchText: ''
             }
+        },
+        computed: {
+            ...mapState([
+                'logined'
+            ])
         }
     }
 </script>

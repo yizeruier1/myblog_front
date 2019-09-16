@@ -42,7 +42,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    import { login } from '../api/api'
     export default {
         name: 'login',
         data(){
@@ -67,15 +67,16 @@
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
                         this.loading = true
-                        // setTimeout(() => {
-                        //     this.$router.push('/')
-                        // }, 1000)
-                        axios.post('/apis/login', this.ruleForm).then(res => {
-                            console.log(res)
+                        login(this.ruleForm).then(res => {
+                            this.loading = false
+                            if(res.code === 100){
+                                this.$message.success('登录成功！')
+                                this.$store.commit('changeLoginStatus', true)
+                                this.$router.push('/')
+                            }else{
+                                this.$message.error(res.message)
+                            }
                         })
-                    } else {
-                        console.log('error submit!!');
-                        return false;
                     }
                 })
             }

@@ -39,4 +39,7 @@
         line-height 24px !important
     .el-menu
         border-right 0 !important
+    ::selection
+        background-color #67C23A
+        color #fff
 </style>
