@@ -1,24 +1,20 @@
 <template>
     <div class="artical-warp">
         <h2 class="artical-d-title">
-            个人博客开发系列：Vue.js + Koa.js项目中使用JWT认证
+            {{ articalData.title }}
         </h2>
         <el-row class="artical-d-info">
             <el-col :span="24">
-                <span class="iconfont icon-bi" style="font-size:12px;"></span>  Stephen
-                <span class="iconfont icon-riqi" style="margin-left:16px;"></span>  2017年12月02日 星期六 晚上
+                <span class="iconfont icon-bi" style="font-size:12px;"></span>  {{ articalData.author }}
+                <span class="iconfont icon-riqi" style="margin-left:16px;"></span>  {{ articalData.createTime }}
             </el-col>
         </el-row>
 
         <!-- // 文章内容 -->
-        <div class="artical-d-content">
-            asda
-        </div>
+        <div class="artical-d-content" v-html="articalData.content"></div>
 
         <div class="artical-d-types">
-            <el-tag size="small">html</el-tag>&nbsp;&nbsp;
-            <el-tag type="success" size="small">js</el-tag>&nbsp;&nbsp;
-            <el-tag type="warning" size="small">css</el-tag>
+            <el-tag size="small" :type="item.color" v-for="item in articalData.types" :key="item._id" style="margin-right:10px;">{{ item.value }}</el-tag>
         </div>
 
         <!-- // 留言列表 -->
@@ -30,8 +26,10 @@
 </template>
 
 <script>
+    import moment from 'moment'
     import commentsBox from '../components/commentsBox'
     import commentsList from '../components/commentsList'
+    import { getArticalDetail } from '../api/api'
     export default {
         name: 'articalDetail',
         components: {
@@ -40,8 +38,20 @@
         },
         data(){
             return{
-
+                articalData: {}
             }
+        },
+        mounted() {
+            getArticalDetail({
+                id: this.$route.query.id
+            }).then(res => {
+                this.articalData = res.data
+                this.articalData.types = JSON.parse(res.data.types)
+                this.articalData.createTime = moment(res.data.createTime).format('YYYY年MM月DD日 dddd hh:mm')
+            })
+        },
+        created() {
+            moment.locale('zh-cn')
         }
     }
 </script>

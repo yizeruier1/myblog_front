@@ -19,7 +19,7 @@ const routes = [
                 component: index
             },
             {
-                path: '/home/articalDetail',
+                path: '/home/articalDetail', // 文章详情
                 name: 'articalDetail',
                 component: articalDetail
             }
@@ -38,14 +38,24 @@ const routes = [
                 component: () => import('@/views/adminWelcome.vue')
             },
             {
-                path: '/admin/articalTypes',
+                path: '/admin/articalTypes', // 文章分类管理
                 name: 'articalTypes',
                 component: () => import('@/views/articalTypes.vue')
             },
             {
-                path: '/admin/addArtical',
+                path: '/admin/addArtical', // 添加文章
                 name: 'addArtical',
                 component: () => import('@/views/addArtical.vue')
+            },
+            {
+                path: '/admin/articals', // 文章列表
+                name: 'articals',
+                component: () => import('@/views/articals.vue')
+            },
+            {
+                path: '/admin/deletedArtical',  // 文章回收站  存放删除的文章
+                name: 'deletedArtical',
+                component: () => import('@/views/deletedArtical.vue')
             }
         ]
     },

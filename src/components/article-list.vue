@@ -2,37 +2,35 @@
     <div class="artical-list">
         <div class="artical-info">
             <!-- // 文章标题 -->
-            <div class="artical-title" @click="$router.push('/home/articalDetail')">
-                一个合格的中级前端工程师要掌握的JavaScript 技巧
+            <div class="artical-title" @click="$router.push('/home/articalDetail?id=' + articalData._id)">
+                {{ articalData.title }}
             </div>
 
             <!-- // 文章简介 -->
             <p class="artical-desc">
-                原理通过 reduce 遍历数组，遇到数组的某个元素仍是数组时，通过 ES6 的扩展运算符对其进行降维（ES5 可以使用 concat 方法），而这个数组元素可能内
+                {{ articalData.desc }}
             </p>
 
             <!-- // 浏览量  分类标签等 -->
             <div class="articla-tags">
                 <el-row>
                     <el-col :span="4">
-                        <span class="iconfont icon-liulanliang"></span>  123
+                        <span class="iconfont icon-liulanliang"></span>  {{ articalData.views }}
                     </el-col>
 
                     <el-col :span="4">
-                        <span class="iconfont icon-bi" style="font-size:12px;"></span>  Stephen
+                        <span class="iconfont icon-bi" style="font-size:12px;"></span>  {{ articalData.author }}
                     </el-col>
 
                     <el-col :span="12" style="text-align:right;">
-                        <el-tag size="small">html</el-tag>&nbsp;&nbsp;
-                        <el-tag type="success" size="small">js</el-tag>&nbsp;&nbsp;
-                        <el-tag type="warning" size="small">css</el-tag>
+                        <el-tag size="small" :type="item.color" v-for="item in JSON.parse(articalData.types)" :key="item._id" style="margin-right:10px;">{{ item.value }}</el-tag>
                     </el-col>
                 </el-row>
             </div>
         </div>
 
         <div class="artical-img">
-            <img src="../assets/images/1.jpg" alt="" @click="$router.push('/home/articalDetail')" />
+            <img :src="articalData.coverImg" alt="" @click="$router.push('/home/articalDetail?id=' + articalData._id)" />
         </div>
     </div>
 </template>
@@ -40,6 +38,7 @@
 <script>
     export default {
         name: "artical-list",
+        props: ['articalData'],
         data(){
             return{
 

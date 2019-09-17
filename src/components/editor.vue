@@ -28,7 +28,6 @@
                 this.editorContent = html
             }
             editor.create()
-
             this.editorContent = this.content
         }
     }

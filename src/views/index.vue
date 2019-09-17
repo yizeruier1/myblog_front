@@ -2,7 +2,7 @@
     <div class="index-warp">
         <!-- // 文章列表 -->
         <div class="index-artical-list">
-            <artical-list v-for="item in [1,2,3,4,5,6,7,8,9]" :key="item" />
+            <artical-list v-for="item in list" :key="item.id" :articalData="item" />
         </div>
 
         <!-- // 推荐列表 -->
@@ -13,6 +13,7 @@
 <script>
     import articalList from '../components/article-list'
     import recommends from '../components/recommends'
+    import { getArticals } from '../api/api'
     export default {
         name: "index",
         components: {
@@ -21,8 +22,21 @@
         },
         data(){
             return{
-                
+                list: []
             }
+        },
+        methods: {
+            getList(){
+                getArticals().then(res => {
+                    console.log(res)
+                    if(res.code === 100){
+                        this.list = res.data.list
+                    }
+                })
+            }
+        },
+        mounted(){
+            this.getList()
         }
     }
 </script>

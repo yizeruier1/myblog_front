@@ -1,5 +1,5 @@
 <template>
-    <div class="articaltypes">
+    <div class="admin-warp">
         <div class="common-desc">
             文章分类管理
         </div>
@@ -11,6 +11,11 @@
         <el-table :data="tableData" stripe style="width: 100%" v-loading="loading">
             <el-table-column prop="key" label="分类号" align="center"></el-table-column>
             <el-table-column prop="value" label="分类名称" align="center"></el-table-column>
+            <el-table-column prop="color" label="颜色" align="center">
+                <template slot-scope="scope">
+                    <span :class="'type-' + scope.row.color">{{ scope.row.color }}</span>
+                </template>
+            </el-table-column>
             <el-table-column label="操作" align="center">
                 <template slot-scope="scope">
                     <el-button size="small" plain type="success" @click="handleEdit(scope.row)">编辑</el-button>
@@ -30,6 +35,14 @@
 
                 <el-form-item label="分类名" prop="value">
                     <el-input v-model="ruleForm.value" autocomplete="off" :size="UISize"></el-input>
+                </el-form-item>
+
+                <el-form-item label="颜色" prop="color">
+                    <el-select v-model="ruleForm.color" :size="UISize" clearable style="width:100%;">
+                        <el-option :value="item" :label="item" v-for="item in colorMap" :key="item">
+                            <span :class="'type-' + item">{{ item }}</span>
+                        </el-option>
+                    </el-select>
                 </el-form-item>
             </el-form>
 
@@ -59,7 +72,8 @@
                 total: 0,
                 ruleForm: {
                     key: '',
-                    value: ''
+                    value: '',
+                    color: ''
                 },
                 rules: {
                     key: [
@@ -71,7 +85,9 @@
                 },
                 showAddDialog: false,
                 // 标记 新增还是 编辑  1为新增
-                formType: 1
+                formType: 1,
+                // 文章分类  colorMap
+                colorMap: ['primary', 'success', 'info', 'warning', 'danger']
             }
         },
         methods: {
@@ -116,10 +132,9 @@
             },
             // 修改
             handleEdit(row){
-                const { key, value, _id } = row
-                this.ruleForm.key = key
-                this.ruleForm.value = value
-                this.ruleForm._id = _id
+                this.ruleForm = {
+                    ...row
+                }
                 this.formType = 2
                 this.showAddDialog = true
             },
@@ -159,8 +174,5 @@
 </script>
 
 <style lang="stylus" scoped>
-    .articaltypes
-        width 1000px
-        height auto
-        margin 0 auto
+    
 </style>

@@ -29,9 +29,9 @@
         background-color #f4f4f4
 
     // element editor  样式覆盖
-    .w-e-text-container
-    .w-e-menu
-        z-index 0 !important
+    // .w-e-text-container
+    // .w-e-menu
+    //     z-index 0 !important
     .el-textarea__inner
         font-size 14px !important
         color #666 !important

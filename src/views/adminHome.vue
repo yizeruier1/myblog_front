@@ -6,9 +6,7 @@
 
             <!-- // 主体内容 -->
             <el-main style="background-color:#fff;padding:0;" class="admin-layout-height">
-                <transition name="el-fade-in-linear">
-                    <router-view />
-                </transition>
+                <router-view />
             </el-main>
         </el-container>
         <!-- // 展示个人信息的 drawer -->

@@ -1,6 +1,5 @@
 <template>
     <div class="addartical-warp">
-
         <div class="common-desc">
             发布文章
         </div>
@@ -19,10 +18,7 @@
                 <el-col :span="12">
                     <el-form-item label="文章标签:" prop="types">
                         <el-select v-model="ruleForm.types" :size="UISize" multiple clearable style="width:100%;">
-                            <el-option label="HTNL" value="1"></el-option>
-                            <el-option label="CSS" value="2"></el-option>
-                            <el-option label="JS" value="3"></el-option>
-                            <el-option label="VUE" value="4"></el-option>
+                            <el-option v-for="item in articalTypes" :key="item.value" :label="item.value" :value="item"></el-option>
                         </el-select>
                     </el-form-item>
                 </el-col>
@@ -38,8 +34,8 @@
 
             <el-row>
                 <el-col :span="12">
-                    <el-form-item label="开启评论:" prop="comment">
-                        <el-radio-group v-model="ruleForm.comment" :size="UISize">
+                    <el-form-item label="开启评论:" prop="comments">
+                        <el-radio-group v-model="ruleForm.comments" :size="UISize">
                             <el-radio :label="1">是</el-radio>
                             <el-radio :label="2">否</el-radio>
                         </el-radio-group>
@@ -51,20 +47,21 @@
                 <el-col :span="24">
                     <el-form-item label="缩略图:" prop="coverImg">
                         <el-upload
-                            action="https://127.0.0.1/apis/uploadImg"
+                            action="/apis/uploadImg"
                             list-type="picture-card"
                             :on-preview="handlePictureCardPreview"
                             :before-upload="beforeAvatarUpload"
+                            :on-success="handleAvatarSuccess"
                             :multiple="false">
                             <i class="el-icon-plus"></i>
                         </el-upload>
                         <el-dialog :visible.sync="dialogVisible">
-                            <img width="100%" :src="ruleForm.coverImg" alt="">
+                            <img width="100%" :src="previewImg" alt="">
                         </el-dialog>
                     </el-form-item>
                 </el-col>
             </el-row>
-            
+
             <editor v-model="ruleForm.content" />
 
             <el-row style="text-align:center;margin:20px 0;">
@@ -78,6 +75,7 @@
 </template>
 
 <script>
+    import { getArticalTypes, addArtical, getArticalDetail } from '../api/api'
     import editor from '../components/editor'
     export default {
         name: 'addArtical',
@@ -91,7 +89,7 @@
                     types: [],
                     content: '',
                     desc: '',
-                    comment: 1,
+                    comments: 1,
                     coverImg: ''
                 },
                 rules: {
@@ -107,40 +105,88 @@
                 },
                 loading: false,
                 // 图片预览
-                dialogVisible: false
+                dialogVisible: false,
+                previewImg: '',
+                articalTypes: [],
+                // 文章id 如果有 就是编辑
+                id: null
             }
         },
         methods: {
             submitForm(){
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
-                        alert('submit!');
-                    } else {
-                        console.log('error submit!!');
-                        return false;
+                        let param = {
+                            ...this.ruleForm
+                        }
+                        param.types = JSON.stringify(this.ruleForm.types)
+                        console.log(param)
+
+                        this.loading = true
+                        addArtical(param).then(res => {
+                            this.loading = false
+                            if(res.code === 100){
+                                this.$message.success('添加成功')
+                            }else{
+                                this.$message.error(res.message)
+                            }
+                        })
                     }
                 })
             },
             resetForm(){
                 this.$refs.ruleForm.resetFields()
             },
-            // 图片上传成功
+            // 图片预览
             handlePictureCardPreview(file) {
-                this.ruleForm.coverImg = file.url
+                this.previewImg = file.url
                 this.dialogVisible = true
+            },
+            // 图片上传成功
+            handleAvatarSuccess(res) {
+                // 保存文件名
+                this.ruleForm.coverImg = '/apis/' + res.data
             },
             // 限制 图片上传 格式 大小
             beforeAvatarUpload(file) {
-                const isJPG = file.type === 'image/jpeg';
-                const isLt2M = file.size / 1024 / 1024 < 2;
-
-                if (!isJPG) {
-                this.$message.error('上传头像图片只能是 JPG 格式!');
-                }
+                const isJPG = file.type === 'image/jpeg'
+                const isPNG = file.type === 'image/png'
+                const isLt2M = file.size / 1024 / 1024 < 1
                 if (!isLt2M) {
-                this.$message.error('上传头像图片大小不能超过 2MB!');
+                    this.$message.error('上传头像图片大小不能超过 1MB!')
                 }
-                return isJPG && isLt2M;
+                if (!isJPG && !isPNG) {
+                    this.$message.error('上传图片格式不对!')
+                }
+                return isLt2M && (isJPG || isPNG)
+            },
+            // 获取文章全部分类
+            getTypes(){
+                getArticalTypes({ pageSize: 50, pageNum: 1 }).then(res => {
+                    if(res.code === 100){
+                        this.articalTypes = res.data.list
+                    }
+                })
+            },
+            // 查文章详情
+            getDetail(){
+                getArticalDetail({
+                    id: this.$route.query.id
+                }).then(res => {
+                    const { title, desc, content, types, comments } = res.data
+                    this.ruleForm.title = title
+                    this.ruleForm.desc = desc
+                    this.ruleForm.content = content
+                    this.ruleForm.types = JSON.parse(types)
+                    this.ruleForm.comments = Number(comments)
+                })
+            }
+        },
+        mounted() {
+            this.getTypes()
+            if(this.$route.query.id){
+                // this.getDetail()
+                this.id = this.$route.query.id
             }
         }
     }
