@@ -28,7 +28,6 @@
         methods: {
             getList(){
                 getArticals().then(res => {
-                    console.log(res)
                     if(res.code === 100){
                         this.list = res.data.list
                     }

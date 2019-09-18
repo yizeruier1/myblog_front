@@ -1,5 +1,5 @@
 <template>
-    <div ref="editor" style="text-align:left;"></div>
+    <div ref="editor" style="text-align:left;height:534px;"></div>
 </template>
 
 <script>
@@ -28,7 +28,7 @@
                 this.editorContent = html
             }
             editor.create()
-            this.editorContent = this.content
+            this.$emit('setInner', editor)
         }
     }
 </script>

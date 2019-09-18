@@ -29,6 +29,7 @@
                     type: 'warning'
                 }).then(() => {
                     this.$message.success('退出成功！')
+                    localStorage.removeItem('token')
                     this.$store.commit('changeLoginStatus', false)
                 }).catch()
             }

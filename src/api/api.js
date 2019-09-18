@@ -22,3 +22,7 @@ export const addArtical = data => myHttp.post('/apis/addArtical', data).then(res
 export const getArticals = data => myHttp.get('/apis/allArtical', { params: data }).then(res => res.data)
 // 查文章详情
 export const getArticalDetail = data => myHttp.get('/apis/articalDetail', { params: data }).then(res => res.data)
+// 更新文章
+export const updateArtical = data => myHttp.post('/apis/updateArtical', data).then(res => res.data)
+// 删除文章
+export const deleteArtical = data => myHttp.delete('/apis/deleteArtical', { params: data }).then(res => res.data)

@@ -1,7 +1,7 @@
 <template>
     <div class="addartical-warp">
         <div class="common-desc">
-            发布文章
+            {{ id ? '修改' : '发布' }}文章
         </div>
 
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px">
@@ -62,11 +62,11 @@
                 </el-col>
             </el-row>
 
-            <editor v-model="ruleForm.content" />
+            <editor v-model="ruleForm.content" @setInner="setInner" />
 
             <el-row style="text-align:center;margin:20px 0;">
                 <el-col :span="24">
-                    <el-button type="primary" @click="submitForm('ruleForm')" size="small" :loading="loading">立即创建</el-button>
+                    <el-button type="primary" @click="submitForm('ruleForm')" size="small" :loading="loading">提交</el-button>
                     <el-button @click="resetForm('ruleForm')" size="small" style="margin-left:20px;">重置</el-button>
                 </el-col>
             </el-row>
@@ -75,8 +75,9 @@
 </template>
 
 <script>
-    import { getArticalTypes, addArtical, getArticalDetail } from '@/api/api'
+    import { getArticalTypes, addArtical, getArticalDetail, updateArtical } from '@/api/api'
     import editor from '@/components/editor'
+    let E = null
     export default {
         name: 'addArtical',
         components: {
@@ -120,13 +121,24 @@
                             ...this.ruleForm
                         }
                         param.types = JSON.stringify(this.ruleForm.types)
-                        console.log(param)
+
+                        const cb = this.id ? updateArtical : addArtical
+                        if(this.id) param.id = this.id
 
                         this.loading = true
-                        addArtical(param).then(res => {
+                        cb(param).then(res => {
                             this.loading = false
                             if(res.code === 100){
-                                this.$message.success('添加成功')
+                                this.$message.success(`${this.id ? '修改' : '添加'}成功！`)
+                                this.$confirm(`${this.id ? '修改' : '添加'}成功！赶快去预览一下吧！`, '提示', {
+                                    confirmButtonText: '去预览',
+                                    cancelButtonText: '继续写文章',
+                                    type: 'warning'
+                                }).then(() => {
+                                    this.$router.replace('/admin/addArtical?id=' + this.id)
+                                }).catch(() => {
+                                    this.resetForm()
+                                })
                             }else{
                                 this.$message.error(res.message)
                             }
@@ -136,6 +148,8 @@
             },
             resetForm(){
                 this.$refs.ruleForm.resetFields()
+                this.ruleForm.content = ''
+                E.txt.html('')
             },
             // 图片预览
             handlePictureCardPreview(file) {
@@ -179,13 +193,18 @@
                     this.ruleForm.content = content
                     this.ruleForm.types = JSON.parse(types)
                     this.ruleForm.comments = Number(comments)
+                    E.txt.html(content)
                 })
+            },
+            // 保存editor实例
+            setInner(editor){
+                E = editor
             }
         },
         mounted() {
             this.getTypes()
             if(this.$route.query.id){
-                // this.getDetail()
+                this.getDetail()
                 this.id = this.$route.query.id
             }
         }

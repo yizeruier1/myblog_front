@@ -2,7 +2,7 @@
     <div class="websitenotice">
         <h4>博客公告</h4>
         <div>
-            恭喜 Stephen 博客正式上线！前后台模板都在<a href="https://github.com/yizeruier1" target="_blank">GitHub</a>。
+            博客终于上线啦！前后台模板都在<a href="https://github.com/yizeruier1" target="_blank">GitHub</a>。
             本站图片来源<a href="https://pixabay.com/zh/" target="_blank">pixabay</a>。所有学习资源都在百度云盘。
             联系我可以发email：gostephen@163.com
         </div>

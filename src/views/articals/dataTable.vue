@@ -17,8 +17,10 @@
         <el-table-column prop="views" label="浏览量" align="center"></el-table-column>
         <el-table-column label="操作" align="center">
             <template slot-scope="scope">
-                <el-button size="small" plain type="success" @click="$router.push('/admin/addArtical?id=' + scope.row._id)">编辑</el-button>
-                <el-button size="small" type="danger">删除</el-button>
+                <el-button size="small" plain type="success" @click="$router.push('/admin/addArtical?id=' + scope.row._id)" v-if="!recover">编辑</el-button>
+                <el-button size="small" type="danger" @click="$emit('deleteArtical', scope.row._id)" v-if="!recover">删除</el-button>
+
+                <el-button plain size="small" type="info" @click="$emit('recoverArtical', scope.row._id)" v-if="recover">恢复</el-button>
             </template>
         </el-table-column>
     </el-table>
@@ -27,6 +29,13 @@
 <script>
     export default {
         name: 'dataTable',
-        props: ['tableData', 'loading']
+        props: {
+            recover: {
+                type: Boolean,
+                default: false
+            },
+            tableData: Array,
+            loading: Boolean
+        }
     }
 </script>

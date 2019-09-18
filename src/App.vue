@@ -11,6 +11,11 @@
             return{
 
             }
+        },
+        created() {
+            if(localStorage.token){
+                this.$store.commit('changeLoginStatus', true)
+            }
         }
     }
 </script>
@@ -28,10 +33,9 @@
         -moz-osx-font-smoothing grayscale
         background-color #f4f4f4
 
-    // element editor  样式覆盖
-    // .w-e-text-container
-    // .w-e-menu
-    //     z-index 0 !important
+    // 修改editor高度
+    .w-e-text-container
+        height 500px !important
     .el-textarea__inner
         font-size 14px !important
         color #666 !important
