@@ -8,6 +8,7 @@
             <el-main style="background-color:#fff;padding:0;" class="admin-layout-height">
                 <router-view />
             </el-main>
+            
         </el-container>
         <!-- // 展示个人信息的 drawer -->
         <admin-drawer />

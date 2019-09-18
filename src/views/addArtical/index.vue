@@ -75,8 +75,8 @@
 </template>
 
 <script>
-    import { getArticalTypes, addArtical, getArticalDetail } from '../api/api'
-    import editor from '../components/editor'
+    import { getArticalTypes, addArtical, getArticalDetail } from '@/api/api'
+    import editor from '@/components/editor'
     export default {
         name: 'addArtical',
         components: {

@@ -1,9 +1,9 @@
 import home from '@/views/layout.vue'
 import index from '@/views/index.vue'
 import page404 from '@/views/404.vue'
-import login from '@/views/login.vue'
-import register from '@/views/register.vue'
-import articalDetail from '@/views/articalDetail.vue'
+import login from '@/views/auth/login.vue'
+import register from '@/views/auth/register.vue'
+import articalDetail from '@/views/articalDetail/index.vue'
 
 const routes = [
     {
@@ -40,22 +40,22 @@ const routes = [
             {
                 path: '/admin/articalTypes', // 文章分类管理
                 name: 'articalTypes',
-                component: () => import('@/views/articalTypes.vue')
+                component: () => import('@/views/articalTypes/index.vue')
             },
             {
                 path: '/admin/addArtical', // 添加文章
                 name: 'addArtical',
-                component: () => import('@/views/addArtical.vue')
+                component: () => import('@/views/addArtical/index.vue')
             },
             {
                 path: '/admin/articals', // 文章列表
                 name: 'articals',
-                component: () => import('@/views/articals.vue')
+                component: () => import('@/views/articals/index.vue')
             },
             {
                 path: '/admin/deletedArtical',  // 文章回收站  存放删除的文章
                 name: 'deletedArtical',
-                component: () => import('@/views/deletedArtical.vue')
+                component: () => import('@/views/deletedArtical/index.vue')
             }
         ]
     },

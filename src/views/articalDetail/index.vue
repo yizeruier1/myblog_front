@@ -27,9 +27,9 @@
 
 <script>
     import moment from 'moment'
-    import commentsBox from '../components/commentsBox'
-    import commentsList from '../components/commentsList'
-    import { getArticalDetail } from '../api/api'
+    import commentsBox from '@/components/commentsBox'
+    import commentsList from '@/components/commentsList'
+    import { getArticalDetail } from '@/api/api'
     export default {
         name: 'articalDetail',
         components: {

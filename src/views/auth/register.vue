@@ -1,5 +1,5 @@
 <template>
-    <div class="login-warp">
+    <auth-box>
         <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm">
             <div class="login-form-box" style="height:412px;">
                 <h2 class="login-title regi-title"> Stephen的博客 </h2>
@@ -54,12 +54,16 @@
                 </el-row>
             </div>
         </el-form>
-    </div>
+    </auth-box>
 </template>
 
 <script>
+    import authBox from './authBox.vue'
     export default {
         name: 'register',
+        components: {
+            authBox
+        },
         data(){
             const validatePass2 = (rule, value, callback) => {
                 if (value === '') {
@@ -121,33 +125,3 @@
         }
     }
 </script>
-
-<style lang="stylus" scoped>
-    .login-warp
-        width 100%
-        height 100vh
-        background url('../assets/images/login-bg.jpg') no-repeat center center
-        background-size cover
-        display flex
-        justify-content center
-        align-items center
-        .login-form-box
-            width 340px
-            height 320px
-            background-color #fff
-            border-radius 6px
-            border 1px solid #f0f0f0
-            box-sizing border-box
-            padding 0 50px
-            .login-title
-                width 100%
-                height 60px
-                line-height 60px
-                color #969696
-                text-align center
-                margin-bottom 20px
-            .regi-title
-                height 50px
-                line-height 50px
-                margin-bottom 10px
-</style>
