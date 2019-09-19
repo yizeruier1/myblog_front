@@ -9,6 +9,13 @@ Vue.use(Router)
 const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition
+        } else {
+            return { x: 0, y: 0 }
+        }
+    },
     routes: routes
 })
 
@@ -20,7 +27,7 @@ router.beforeEach((to, from, next) => {
         Message.warning('不要去不该去的地方哦！')
         next(from.path)
     }
-    // 没登录  不能去/admin 系列页面
+    // 没登录  不能去/admin 系列页面    也可以在路由上定义 meta 信息来拦截
     const reg = new RegExp(/^\/admin/)
     if (reg.test(to.path) && !token) {
         Message.warning('请先登录哦！')

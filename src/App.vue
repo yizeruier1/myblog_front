@@ -46,4 +46,6 @@
     ::selection
         background-color #67C23A
         color #fff
+    .el-message-box__wrapper
+        z-index 300000 !important
 </style>

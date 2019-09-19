@@ -15,6 +15,11 @@
             </template>
         </el-table-column>
         <el-table-column prop="views" label="浏览量" align="center"></el-table-column>
+        <el-table-column prop="createTime" label="发布时间" align="center">
+            <template slot-scope="scope">
+                {{ scope.row.createTime | formateTime }}
+            </template>
+        </el-table-column>
         <el-table-column label="操作" align="center">
             <template slot-scope="scope">
                 <el-button size="small" plain type="success" @click="$router.push('/admin/addArtical?id=' + scope.row._id)" v-if="!recover">编辑</el-button>
@@ -27,6 +32,7 @@
 </template>
 
 <script>
+    import moment from 'moment'
     export default {
         name: 'dataTable',
         props: {
@@ -36,6 +42,11 @@
             },
             tableData: Array,
             loading: Boolean
+        },
+        filters: {
+            formateTime(time){
+                return moment(time).format('YYYY-MM-DD hh:mm')
+            }
         }
     }
 </script>

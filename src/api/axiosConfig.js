@@ -26,6 +26,7 @@ myHttp.interceptors.response.use(
         return response
     },
     (err) => {
+        console.log(err)
         let errMsg = ''
         if (err && err.response.status) {
             switch (err.response.status) {

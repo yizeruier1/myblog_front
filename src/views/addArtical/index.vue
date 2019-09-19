@@ -135,7 +135,7 @@
                                     cancelButtonText: '继续写文章',
                                     type: 'warning'
                                 }).then(() => {
-                                    this.$router.replace('/admin/addArtical?id=' + this.id)
+                                    this.$router.replace('/home/articalDetail?id=' + this.id)
                                 }).catch(() => {
                                     this.resetForm()
                                 })

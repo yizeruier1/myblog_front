@@ -1,7 +1,10 @@
 <template>
     <div class="index-warp">
         <!-- // 文章列表 -->
-        <div class="index-artical-list">
+        <div class="index-artical-list" v-if="list.length === 0">
+            <list-skeleton v-for="item in [1,2,3,4,5]" :key="item" />
+        </div>
+        <div class="index-artical-list" v-else>
             <artical-list v-for="item in list" :key="item.id" :articalData="item" />
         </div>
 
@@ -11,14 +14,16 @@
 </template>
 
 <script>
-    import articalList from '../components/article-list'
-    import recommends from '../components/recommends'
-    import { getArticals } from '../api/api'
+    import articalList from '@/components/article-list'
+    import recommends from '@/components/recommends'
+    import listSkeleton from '@/components/list-skeleton'
+    import { getArticals } from '@/api/api'
     export default {
         name: "index",
         components: {
             articalList,
-            recommends
+            recommends,
+            listSkeleton
         },
         data(){
             return{
