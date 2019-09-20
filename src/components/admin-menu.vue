@@ -7,6 +7,7 @@
             text-color="#fff"
             active-text-color="#ffd04b"
             router
+            :unique-opened="true"
         >
             <el-menu-item index="/admin/welcome">
                 <i class="el-icon-place"></i>

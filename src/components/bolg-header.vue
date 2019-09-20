@@ -10,8 +10,12 @@
                 <el-col :span="4" class="my-name">
                     Stephen
                 </el-col>
+
+                <el-col :span="9" style="padding-top:6px;">
+                    <div id="he-plugin-simple"></div>
+                </el-col>
                 <!-- // 搜索框 -->
-                <el-col :span="18" class="my-name" style="text-align:right;">
+                <el-col :span="9" class="my-name" style="text-align:right;">
                     <el-input placeholder="全站搜索" v-model="searchText" :size="UISize" class="search-input">
                         <el-button slot="append" icon="el-icon-search"></el-button>
                     </el-input>
@@ -60,11 +64,11 @@
         top 0
         z-index 1
         .header-menu
-            width 100px
+            min-width 100px
             height $headerH
             line-height $headerH
             position absolute
-            right 0
+            right 50px
             top 0
         .header-main
             width 940px

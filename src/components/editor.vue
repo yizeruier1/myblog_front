@@ -23,7 +23,13 @@
         },
         mounted() {
             var editor = new E(this.$refs.editor)
-            editor.customConfig.uploadImgShowBase64 = true
+            // editor.customConfig.uploadImgShowBase64 = true
+            // 设置 图片上传地址
+            editor.customConfig.uploadImgServer = '/apis/uploadEditorImg'
+            // 图片大小限制 1M
+            editor.customConfig.uploadImgMaxSize = 1024 * 1024
+            // 一次最多传 10 张
+            editor.customConfig.uploadImgMaxLength = 10
             editor.customConfig.onchange = (html) => {
                 this.editorContent = html
             }

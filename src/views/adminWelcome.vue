@@ -1,12 +1,21 @@
 <template>
-    <div class="admin-welcome">
+    <div class="admin-welcome" :class="bgclass">
         <h1>Welcome to Stephen Bolg！</h1>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'admin-welcome'
+        name: 'admin-welcome',
+        data(){
+            return{
+                bgclass: ''
+            }
+        },
+        created() {
+            const num = Math.floor(Math.random() * 5) + 1
+            this.bgclass = `wel-bg${num}`
+        }
     }
 </script>
 
@@ -14,7 +23,6 @@
     .admin-welcome
         width 100%
         height 100%
-        background url('../assets/images/welcome-img/4.jpg') no-repeat center center
         background-size cover
         overflow hidden
         h1
@@ -23,4 +31,14 @@
             margin 15% auto auto auto
             text-align center
             opacity 0.7
+    .wel-bg1
+        background url('../assets/images/welcome-img/1.jpg') no-repeat center center
+    .wel-bg2
+        background url('../assets/images/welcome-img/2.jpg') no-repeat center center
+    .wel-bg3
+        background url('../assets/images/welcome-img/3.jpg') no-repeat center center
+    .wel-bg4
+        background url('../assets/images/welcome-img/4.jpg') no-repeat center center
+    .wel-bg5
+        background url('../assets/images/welcome-img/5.jpg') no-repeat center center
 </style>

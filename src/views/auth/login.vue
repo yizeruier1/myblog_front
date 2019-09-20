@@ -75,6 +75,7 @@
                             this.loading = false
                             if(res.code === 100){
                                 this.$message.success('登录成功！')
+                                this.$store.commit('setUserData', res.data)
                                 this.$store.commit('changeLoginStatus', true)
                                 localStorage.setItem('token', res.data)
                                 this.$router.push('/')

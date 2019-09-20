@@ -59,6 +59,7 @@
 
 <script>
     import authBox from './authBox.vue'
+    import { register } from '@/api/api.js'
     export default {
         name: 'register',
         components: {
@@ -113,12 +114,15 @@
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
                         this.loading = true
-                        setTimeout(() => {
-                            this.$router.push('/')
-                        }, 1000)
-                    } else {
-                        console.log('error submit!!');
-                        return false;
+                        register(this.ruleForm).then(res => {
+                            if(res.code === 100){
+                                this.$message.success('注册成功！')
+                                this.$router.push('/login')
+                            }else{
+                                this.$message.error(res.message)
+                            }
+                            this.loading = false
+                        })
                     }
                 })
             }

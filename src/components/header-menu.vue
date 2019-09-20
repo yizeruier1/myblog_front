@@ -2,7 +2,7 @@
     <div>
         <el-dropdown>
             <span class="el-dropdown-link">
-                下拉菜单<i class="el-icon-arrow-down el-icon--right"></i>
+                Hi: {{ $store.state.userData.name }}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item icon="iconfont icon-yonghudianji">个人资料</el-dropdown-item>
@@ -31,7 +31,11 @@
                     this.$message.success('退出成功！')
                     localStorage.removeItem('token')
                     this.$store.commit('changeLoginStatus', false)
-                }).catch()
+                    this.$store.commit('setUserData', null)
+                    this.$router.push('/login')
+                }).catch(() => {
+                    // cancel
+                })
             }
         }
     }

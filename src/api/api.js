@@ -3,6 +3,8 @@ import myHttp from './axiosConfig'
 
 // 登录
 export const login = data => myHttp.post('/apis/login', data).then(res => res.data)
+// 注册
+export const register = data => myHttp.post('/apis/register', data).then(res => res.data)
 
 
 // 查询 文章 类型

@@ -1,7 +1,7 @@
 <template>
     <div class="admin-drawer">
         <!-- // 头像 -->
-        <div class="drawer-ava" v-show="!showDrawer" @click="showDrawer = !showDrawer">
+        <div class="drawer-ava" @click="showDrawer = !showDrawer">
             <img src="../assets/images/ava.jpg" alt="用户信息">
         </div>
 
@@ -13,10 +13,10 @@
         >
             <img src="../assets/images/ava.jpg" alt="" class="drawer-user-ava">
             <p class="drawer-user-name">
-                Stephen
+                {{ userData.name }}
             </p>
             <p class="drawer-user-sign">
-                这个人很懒，什么都没留下 ~ ~
+                {{ userData.sign ? userData.sign : '这个人很懒，什么都没留下 ~ ~' }}
             </p>
 
             <div class="drawer-menu">
@@ -29,6 +29,7 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
     export default {
         name: 'damin-drawer',
         data(){
@@ -44,12 +45,16 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    // this.$message({
-                    //     type: 'success',
-                    //     message: '删除成功!'
-                    // })
-                }).catch()
+                    // done
+                }).catch(() => {
+                    // cancel
+                })
             }
+        },
+        computed: {
+            ...mapState([
+                'userData'
+            ])
         }
     }
 </script>

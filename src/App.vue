@@ -13,8 +13,10 @@
             }
         },
         created() {
+            // 初始化用户信息
             if(localStorage.token){
                 this.$store.commit('changeLoginStatus', true)
+                this.$store.commit('setUserData', localStorage.token)
             }
         }
     }

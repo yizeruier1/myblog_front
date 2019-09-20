@@ -47,17 +47,14 @@
                 <el-col :span="24">
                     <el-form-item label="缩略图:" prop="coverImg">
                         <el-upload
+                            class="avatar-uploader"
                             action="/apis/uploadImg"
-                            list-type="picture-card"
-                            :on-preview="handlePictureCardPreview"
-                            :before-upload="beforeAvatarUpload"
+                            :show-file-list="false"
                             :on-success="handleAvatarSuccess"
-                            :multiple="false">
-                            <i class="el-icon-plus"></i>
+                            :before-upload="beforeAvatarUpload">
+                            <img v-if="ruleForm.coverImg" :src="ruleForm.coverImg" class="avatar">
+                            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                         </el-upload>
-                        <el-dialog :visible.sync="dialogVisible">
-                            <img width="100%" :src="previewImg" alt="">
-                        </el-dialog>
                     </el-form-item>
                 </el-col>
             </el-row>
@@ -105,9 +102,6 @@
                     ]
                 },
                 loading: false,
-                // 图片预览
-                dialogVisible: false,
-                previewImg: '',
                 articalTypes: [],
                 // 文章id 如果有 就是编辑
                 id: null
@@ -130,15 +124,16 @@
                             this.loading = false
                             if(res.code === 100){
                                 this.$message.success(`${this.id ? '修改' : '添加'}成功！`)
-                                this.$confirm(`${this.id ? '修改' : '添加'}成功！赶快去预览一下吧！`, '提示', {
-                                    confirmButtonText: '去预览',
-                                    cancelButtonText: '继续写文章',
-                                    type: 'warning'
-                                }).then(() => {
-                                    this.$router.replace('/home/articalDetail?id=' + this.id)
-                                }).catch(() => {
-                                    this.resetForm()
-                                })
+                                // this.$confirm(`${this.id ? '修改' : '添加'}成功！赶快去预览一下吧！`, '提示', {
+                                //     confirmButtonText: '去预览',
+                                //     cancelButtonText: '继续写文章',
+                                //     type: 'warning'
+                                // }).then(() => {
+                                //     this.$router.replace('/home/articalDetail?id=' + this.id)
+                                // }).catch(() => {
+                                //     this.resetForm()
+                                // })
+                                this.$router.push('/admin/articals')
                             }else{
                                 this.$message.error(res.message)
                             }
@@ -150,11 +145,6 @@
                 this.$refs.ruleForm.resetFields()
                 this.ruleForm.content = ''
                 E.txt.html('')
-            },
-            // 图片预览
-            handlePictureCardPreview(file) {
-                this.previewImg = file.url
-                this.dialogVisible = true
             },
             // 图片上传成功
             handleAvatarSuccess(res) {
@@ -187,12 +177,13 @@
                 getArticalDetail({
                     id: this.$route.query.id
                 }).then(res => {
-                    const { title, desc, content, types, comments } = res.data
+                    const { title, desc, content, types, comments, coverImg } = res.data
                     this.ruleForm.title = title
                     this.ruleForm.desc = desc
                     this.ruleForm.content = content
                     this.ruleForm.types = JSON.parse(types)
                     this.ruleForm.comments = Number(comments)
+                    this.ruleForm.coverImg = coverImg
                     E.txt.html(content)
                 })
             },
@@ -217,4 +208,29 @@
         height auto
         margin 0 auto
         overflow hidden
+</style>
+<style>
+    .avatar-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 178px;
+        height: 178px;
+        line-height: 178px;
+        text-align: center;
+    }
+    .avatar {
+        display: block;
+        max-width: 160px;
+        max-height: 160px;
+    }
 </style>
