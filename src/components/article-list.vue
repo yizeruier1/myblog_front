@@ -18,11 +18,11 @@
                         <span class="iconfont icon-liulanliang"></span>  {{ articalData.views }}
                     </el-col>
 
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <span class="iconfont icon-bi" style="font-size:12px;"></span>  {{ articalData.author }}
                     </el-col>
 
-                    <el-col :span="12" style="text-align:right;">
+                    <el-col :span="14" style="text-align:right;">
                         <el-tag size="small" :type="item.color" v-for="item in JSON.parse(articalData.types)" :key="item._id" style="margin-right:10px;">{{ item.value }}</el-tag>
                     </el-col>
                 </el-row>
@@ -38,12 +38,7 @@
 <script>
     export default {
         name: "artical-list",
-        props: ['articalData'],
-        data(){
-            return{
-
-            }
-        }
+        props: ['articalData']
     }
 </script>
 
