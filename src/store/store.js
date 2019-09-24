@@ -9,7 +9,9 @@ export default new Vuex.Store({
         // 是否登录
         logined: false,
         // 存储用户信息
-        userData: null
+        userData: null,
+        // 登录之前的回调地址
+        redirectUrl: ''
     },
     mutations: {
         // 切换登录状态
@@ -20,6 +22,10 @@ export default new Vuex.Store({
         setUserData(state, data) {
             const info = jwt.decode(data)
             state.userData = info
+        },
+        // 设置回调地址
+        setRedirectUrl(state, url) {
+            state.redirectUrl = url
         }
     },
     actions: {

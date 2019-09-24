@@ -1,6 +1,6 @@
 <template>
     <auth-box>
-        <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm">
+        <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" @keyup.enter.native="submitForm">
             <div class="login-form-box">
                 <h2 class="login-title"> Stephen的博客 </h2>
 
@@ -44,6 +44,7 @@
 <script>
     import { login } from '@/api/api'
     import authBox from './authBox.vue'
+    import { mapState, mapMutations  } from 'vuex'
     export default {
         name: 'login',
         components: {
@@ -67,6 +68,11 @@
             }
         },
         methods: {
+            ...mapMutations([
+                'setUserData',
+                'changeLoginStatus',
+                'setRedirectUrl'
+            ]),
             submitForm(){
                 this.$refs.ruleForm.validate((valid) => {
                     if (valid) {
@@ -75,10 +81,15 @@
                             this.loading = false
                             if(res.code === 100){
                                 this.$message.success('登录成功！')
-                                this.$store.commit('setUserData', res.data)
-                                this.$store.commit('changeLoginStatus', true)
+                                // 保存登录状态
+                                this.setUserData(res.data)
+                                this.changeLoginStatus(true)
                                 localStorage.setItem('token', res.data)
-                                this.$router.push('/')
+
+                                // 跳转
+                                const url = this.redirectUrl ? this.redirectUrl : '/'
+                                this.setRedirectUrl('')
+                                this.$router.push(url)
                             }else{
                                 this.$message.error(res.message)
                             }
@@ -86,6 +97,9 @@
                     }
                 })
             }
-        }
+        },
+        computed: mapState([
+            'redirectUrl'
+        ])
     }
 </script>

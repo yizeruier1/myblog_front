@@ -18,10 +18,10 @@
         </div>
 
         <!-- // 留言列表 -->
-        <comments-list />
+        <comments-list :commentData="commentData" v-if="commentData.total > 0" />
 
         <!-- // 留言板 -->
-        <comments-box />
+        <comments-box @postSuccess="getList" />
     </div>
 </template>
 
@@ -29,7 +29,7 @@
     import moment from 'moment'
     import commentsBox from '@/components/commentsBox'
     import commentsList from '@/components/commentsList'
-    import { getArticalDetail } from '@/api/api'
+    import { getArticalDetail, getComments } from '@/api/api'
     export default {
         name: 'articalDetail',
         components: {
@@ -38,17 +38,35 @@
         },
         data(){
             return{
-                articalData: {}
+                articalData: {},
+                commentData: {},
+                pageNum: 1,
+                pageSize: 10
+            }
+        },
+        methods: {
+            // 查详情
+            getDetail(){
+                getArticalDetail({
+                    id: this.$route.query.id
+                }).then(res => {
+                    this.articalData = res.data
+                    this.articalData.types = JSON.parse(res.data.types)
+                    this.articalData.createTime = moment(res.data.createTime).format('YYYY年MM月DD日 dddd hh:mm')
+                })
+            },
+            // 查列表
+            getList(){
+                getComments({ id: this.$route.query.id }).then(res => {
+                    if(res.code === 100){
+                        this.commentData = res.data
+                    }
+                })
             }
         },
         mounted() {
-            getArticalDetail({
-                id: this.$route.query.id
-            }).then(res => {
-                this.articalData = res.data
-                this.articalData.types = JSON.parse(res.data.types)
-                this.articalData.createTime = moment(res.data.createTime).format('YYYY年MM月DD日 dddd hh:mm')
-            })
+            this.getDetail()
+            this.getList()
         },
         created() {
             moment.locale('zh-cn')

@@ -28,3 +28,10 @@ export const getArticalDetail = data => myHttp.get('/apis/articalDetail', { para
 export const updateArtical = data => myHttp.post('/apis/updateArtical', data).then(res => res.data)
 // 删除文章
 export const deleteArtical = data => myHttp.delete('/apis/deleteArtical', { params: data }).then(res => res.data)
+
+
+
+// 发表评论
+export const postComments = data => myHttp.post('/apis/addComment', data).then(res => res.data)
+// 查评论列表
+export const getComments = data => myHttp.get('/apis/allComments', { params: data }).then(res => res.data)
