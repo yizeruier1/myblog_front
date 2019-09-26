@@ -87,7 +87,7 @@
             width 150px
             height 100px
             box-sizing border-box
-            border-bottom 1px solid #f0f0f0
+            border 1px solid #f0f0f0
             float right
             cursor pointer
             overflow hidden
