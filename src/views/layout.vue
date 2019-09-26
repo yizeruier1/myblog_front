@@ -3,7 +3,7 @@
         <bolg-header />
 
         <div class="bolg-content">
-            <transition name="el-fade-in-linear">
+            <transition name="el-fade-in-linear" mode="out-in">
                 <router-view />
             </transition>
         </div>

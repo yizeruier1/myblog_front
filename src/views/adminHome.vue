@@ -6,7 +6,9 @@
 
             <!-- // 主体内容 -->
             <el-main style="background-color:#fff;padding:0;" class="admin-layout-height">
-                <router-view />
+                <transition name="fade-transform" mode="out-in">
+                    <router-view />
+                </transition>
             </el-main>
             
         </el-container>
