@@ -33,10 +33,10 @@
             </el-row>
         </div>
 
-        <div class="recommend-list">
+        <div class="recommend-list" @click="$router.push('/home/FELearningResources')">
             <el-row>
                 <el-col :span="21" class="indent8">
-                    <span class="el-icon-platform-eleme" style="margin-right:10px;"></span>前端资源
+                    <span class="el-icon-collection" style="margin-right:10px;"></span>前端资源
                 </el-col>
                 <el-col :span="3">
                     <span class="el-icon-right"></span>

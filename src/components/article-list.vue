@@ -91,9 +91,9 @@
             float right
             cursor pointer
             overflow hidden
-            border-radius 6px
             img
                 display block
                 width 100%
                 height auto
+                border-radius 6px
 </style>

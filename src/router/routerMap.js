@@ -4,6 +4,7 @@ import page404 from '@/views/404.vue'
 import login from '@/views/auth/login.vue'
 import register from '@/views/auth/register.vue'
 import articalDetail from '@/views/articalDetail/index.vue'
+import FELearningResources from '@/views/FELearningResources.vue'
 
 const routes = [
     {
@@ -22,6 +23,11 @@ const routes = [
                 path: '/home/articalDetail', // 文章详情
                 name: 'articalDetail',
                 component: articalDetail
+            },
+            {
+                path: '/home/FELearningResources', // 学习资源
+                name: 'FELearningResources',
+                component: FELearningResources
             }
         ]
     },
