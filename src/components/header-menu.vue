@@ -5,8 +5,8 @@
                 Hi: {{ $store.state.userData.name }}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item icon="iconfont icon-yonghudianji">个人资料</el-dropdown-item>
-                <el-dropdown-item icon="el-icon-document-copy" @click.native="$router.push('/admin')">资源管理</el-dropdown-item>
+                <el-dropdown-item icon="iconfont icon-yonghudianji" v-if="userData.permissions >= 10">个人资料</el-dropdown-item>
+                <el-dropdown-item icon="el-icon-document-copy" @click.native="$router.push('/admin')" v-if="userData.permissions >= 10">资源管理</el-dropdown-item>
                 <el-dropdown-item icon="iconfont icon-tuichu" @click.native="lgout">退出</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+    import { mapState } from 'vuex'
     export default {
         name: 'header-menu',
         data(){
@@ -37,7 +38,10 @@
                     // cancel
                 })
             }
-        }
+        },
+        computed: mapState([
+            'userData'
+        ])
     }
 </script>
 
