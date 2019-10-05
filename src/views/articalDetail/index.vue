@@ -50,6 +50,7 @@
                 getArticalDetail({
                     id: this.$route.query.id
                 }).then(res => {
+                    document.title = res.data.title
                     this.articalData = res.data
                     this.articalData.types = JSON.parse(res.data.types)
                     this.articalData.createTime = moment(res.data.createTime).format('YYYY年MM月DD日 dddd hh:mm')
@@ -70,6 +71,9 @@
         },
         created() {
             moment.locale('zh-cn')
+        },
+        destroyed() {
+            document.title = "Stephen的博客"
         }
     }
 </script>
