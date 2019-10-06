@@ -86,14 +86,15 @@
             display block
             width 150px
             height 100px
-            box-sizing border-box
-            border 1px solid #f0f0f0
             float right
             cursor pointer
+            border-radius 6px
             overflow hidden
             img
                 display block
                 width 100%
                 height auto
                 border-radius 6px
+                border 1px solid #f0f0f0
+                box-sizing border-box
 </style>
