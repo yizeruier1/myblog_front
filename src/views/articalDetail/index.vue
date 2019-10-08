@@ -11,7 +11,8 @@
         </el-row>
 
         <!-- // 文章内容 -->
-        <div class="artical-d-content" v-html="articalData.content" v-highlight></div>
+        <div class="artical-d-content" v-html="articalData.content" v-highlight v-if="articalData.content"></div>
+        <loading-box v-else />
 
         <div class="artical-d-types">
             <el-tag size="small" :type="item.color" v-for="item in articalData.types" :key="item._id" style="margin-right:10px;">{{ item.value }}</el-tag>
@@ -29,12 +30,14 @@
     import moment from 'moment'
     import commentsBox from '@/components/commentsBox'
     import commentsList from '@/components/commentsList'
+    import loadingBox from '@/components/loading'
     import { getArticalDetail, getComments } from '@/api/api'
     export default {
         name: 'articalDetail',
         components: {
             commentsBox,
-            commentsList
+            commentsList,
+            loadingBox
         },
         data(){
             return{
