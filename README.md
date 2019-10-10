@@ -2,7 +2,7 @@
 线上地址： [博客地址](http://www.gostephen.cn)
 ### 技术栈
 主要为Vue相关，详情可查看 [package.json](https://github.com/yizeruier1/myblog_front/blob/master/package.json)
-### 实现的功能
+### 开箱即用的功能
 + 骨架屏的使用
 + 文章的增删改查
 + 文件的上传、预览
