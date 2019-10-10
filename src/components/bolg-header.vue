@@ -16,8 +16,15 @@
                 </el-col>
                 <!-- // 搜索框 -->
                 <el-col :span="9" class="my-name" style="text-align:right;">
-                    <el-input placeholder="全站搜索" v-model="searchText" :size="UISize" class="search-input">
-                        <el-button slot="append" icon="el-icon-search"></el-button>
+                    <el-input 
+                        placeholder="根据文章名称搜索" 
+                        v-model="searchText" 
+                        :size="UISize" 
+                        class="search-input" 
+                        clearable 
+                        @keyup.enter.native="$store.dispatch('searchByTitle', searchText)"
+                    >
+                        <el-button slot="append" icon="el-icon-search" @click="$store.dispatch('searchByTitle', searchText)"></el-button>
                     </el-input>
                 </el-col>
             </el-row>
@@ -32,7 +39,7 @@
 
 <script>
     import headerMenu from './header-menu.vue'
-    import { mapState } from 'vuex'
+    import { mapState, mapActions } from 'vuex'
     export default {
         name: "bold-header",
         components: {
@@ -42,6 +49,11 @@
             return{
                 searchText: ''
             }
+        },
+        methods: {
+            ...mapActions([
+                'searchByTitle'
+            ])
         },
         computed: {
             ...mapState([

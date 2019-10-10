@@ -1,10 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import jwt from 'jsonwebtoken'
+import articals from './artical'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+    // 文章模块
+    modules: {
+        articals: articals
+    },
+
+    // 通用模块
     state: {
         // 是否登录
         logined: false,

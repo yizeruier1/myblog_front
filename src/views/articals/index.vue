@@ -41,7 +41,10 @@
             // 查文章列表
             getArts(){
                 this.loading = true
-                getArticals().then(res => {
+                getArticals({
+                    pageSize: this.pageSize,
+                    pageNum: this.pageNum
+                }).then(res => {
                     this.loading = false
                     if(res.code === 100){
                         this.tableData = res.data.list
