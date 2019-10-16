@@ -26,7 +26,7 @@
     import articalList from '@/components/article-list'
     import recommends from '@/components/recommends'
     import listSkeleton from '@/components/list-skeleton'
-    import { mapState, mapActions, mapMutations } from 'vuex'
+    import { mapState, mapActions } from 'vuex'
     export default {
         name: "index",
         components: {
@@ -37,7 +37,8 @@
         methods: {
             ...mapActions([
                 'getList',
-                'loadMore'
+                'loadMore',
+                'initSearchParams'
             ])
         },
         computed: {
@@ -47,6 +48,10 @@
         },
         mounted(){
             this.getList()
+        },
+        // 跳出当前页  初始化 文章查询条件
+        beforeDestroy(){
+            this.initSearchParams()
         }
     }
 </script>

@@ -66,6 +66,14 @@ export default {
             commit('setPageNum', 1)
             commit('setTitle', title)
             dispatch('getList')
+        },
+
+        // 初始化 查询条件
+        initSearchParams(){
+            commit('setList', [])
+            commit('setPageNum', 1)
+            commit('setTitle', '')
+            commit('setTotal', 0)
         }
     }
 }

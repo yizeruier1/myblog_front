@@ -7,7 +7,7 @@
                 <el-row>
                     <el-col :span="24">
                         <el-form-item prop="email">
-                            <el-input v-model="ruleForm.email" placeholder="用户名" :size="UISize"></el-input>
+                            <el-input v-model="ruleForm.email" placeholder="邮箱" :size="UISize"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
