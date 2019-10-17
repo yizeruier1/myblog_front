@@ -69,7 +69,7 @@ export default {
         },
 
         // 初始化 查询条件
-        initSearchParams(){
+        initSearchParams({ commit }){
             commit('setList', [])
             commit('setPageNum', 1)
             commit('setTitle', '')
