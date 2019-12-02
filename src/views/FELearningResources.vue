@@ -36,7 +36,8 @@
                     { name: '一堆pdf电子书', href: 'https://pan.baidu.com/s/1go_SSF9DtJAd-HBKhaRlfg' },
                     { name: 'vue-cli', href: 'https://pan.baidu.com/s/1rf9_gmLKJY4RGd3RUksxCQ' },
                     { name: 'python 相关', href: 'https://pan.baidu.com/s/14WIS1FHHtg6muxlzR53KRw' },
-                    { name: 'PSCC2018', href: 'https://pan.baidu.com/s/1PKW60k9Y0gvbZ7YjN3Lk0A' }
+                    { name: 'PSCC2018', href: 'https://pan.baidu.com/s/1PKW60k9Y0gvbZ7YjN3Lk0A' },
+                    { name: '谷歌访问助手', href: 'https://pan.baidu.com/s/1e_rBEwl61Ug7-CeKFw-DVw  -  提取码：p429' }
                 ]
             }
         }
