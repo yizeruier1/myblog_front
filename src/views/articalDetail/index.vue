@@ -104,6 +104,8 @@
             width 100%
             height auto
             overflow hidden
+            p
+                line-height 24px
         .artical-d-types
             border-top 1px dashed #2d8cf0
             margin-top 20px

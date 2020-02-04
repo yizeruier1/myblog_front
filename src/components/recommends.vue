@@ -22,10 +22,10 @@
             </el-row>
         </div>
 
-        <div class="recommend-list">
+        <div class="recommend-list" @click='viewResume'>
             <el-row>
                 <el-col :span="21" class="indent8">
-                    <span class="el-icon-platform-eleme" style="margin-right:10px;"></span>面试宝典
+                    <span class="el-icon-platform-eleme" style="margin-right:10px;"></span>个人简历
                 </el-col>
                 <el-col :span="3">
                     <span class="el-icon-right"></span>
@@ -55,13 +55,16 @@
         name: 'recommends',
         components: {
             websiteNotice
+        },
+        methods: {
+            viewResume(){
+                window.open('http://www.gostephen.cn:8000')
+            }
         }
     }
 </script>
 
 <style lang="stylus" scoped>
-
-
     .recommend-warp
         width 280px
         height auto
